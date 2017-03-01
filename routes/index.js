@@ -5,7 +5,10 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const User = require('../models/user.js');
 
-router.get('/', (req, res, next) => {
+// Home page - a dashboard that requires login
+// it calls the ensureAuthenticated function
+// as a middleware (so use the functiion as a second parameter)
+router.get('/', ensureAuthenticated, (req, res, next) => {
 	res.send('hello world!');
 });
 
@@ -16,6 +19,15 @@ router.get('/register', (req, res, next) => {
 router.get('/login', (req, res, next) => {
 	res.render('login');
 })
+
+// Process logout
+router.get('/logout', (req, res, next) => {
+	req.logout();
+	req.flash('success_msg', 'You are now logged out.');
+	res.redirect('/login');
+});
+
+// Process registratoin
 
 router.post('/register', (req, res, next) => {
 	const name = req.body.name;
@@ -107,5 +119,16 @@ router.post('/login', (req, res, next) => {
 		failureFlash: true
 	})(req, res, next);
 });
+
+// Authentication / Access Control
+
+function ensureAuthenticated(req, res, next) {
+	if(req.isAuthenticated()){
+		return next();
+	} else {
+		req.flash('error_msg', 'You are not authorized to view that page.');
+		res.redirect('/login');
+	}
+}
 
 module.exports = router;
