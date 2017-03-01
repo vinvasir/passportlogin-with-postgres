@@ -47,6 +47,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Express messages
+// Also sets up some global variables
+// Including the authenticated user (or lack thereof)
 app.use(logger('combined'));
 app.use(require('connect-flash')());
 app.use((req, res, next) => {
