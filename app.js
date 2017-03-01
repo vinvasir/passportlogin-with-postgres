@@ -42,6 +42,10 @@ app.use(session({
   saveUninitialized: true
 }));
 
+// Init passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Express messages
 app.use(logger('combined'));
 app.use(require('connect-flash')());
