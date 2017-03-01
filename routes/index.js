@@ -9,7 +9,7 @@ const User = require('../models/user.js');
 // it calls the ensureAuthenticated function
 // as a middleware (so use the functiion as a second parameter)
 router.get('/', ensureAuthenticated, (req, res, next) => {
-	res.send('hello world!');
+	res.render('index');
 });
 
 router.get('/register', (req, res, next) => {
