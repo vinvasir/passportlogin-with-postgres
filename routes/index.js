@@ -70,7 +70,7 @@ passport.use(new LocalStrategy((username, password, done) => {
     usr.validatePassword(password)
     .then(valid => {
       if (!valid) {
-        return done(null, false< {message: 'Wrong Password'});
+        return done(null, false, {message: 'Wrong Password'});
       }
       return done(null, usr);
     });
@@ -105,9 +105,7 @@ router.post('/login', (req, res, next) => {
 		successRedirect: '/',
 		failureRedirect: '/login',
 		failureFlash: true
-	}, (req, res) => {
-		res.redirect('/');
-	});
+	})(req, res, next);
 });
 
 module.exports = router;

@@ -50,7 +50,10 @@ app.use(passport.session());
 app.use(logger('combined'));
 app.use(require('connect-flash')());
 app.use((req, res, next) => {
-	res.locals.messages = require('express-messages')(req, res);
+	res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
 	next();
 });
 
