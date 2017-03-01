@@ -22,7 +22,11 @@ const users = require('./routes/users');
 // Init app
 const app = express();
 
+// Set static folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 // View Engine
+app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
