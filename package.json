@@ -1,0 +1,27 @@
+{
+  "name": "passportlogin",
+  "version": "1.0.0",
+  "description": "An app to practice user authentication",
+  "main": "app.js",
+  "scripts": {
+  	"start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  	"express": "*",
+  	"body-parser": "*",
+  	"express-handlebars": "*",
+  	"express-messages": "*",
+  	"express-session": "*",
+  	"connect-flash": "*",
+  	"pg": "*",
+  	"knex": "*",
+  	"bookshelf": "*",
+  	"passport": "*",
+  	"passport-http": "*",
+  	"passport-local": "*",
+  	"bcryptjs": "*"
+  }
+}
